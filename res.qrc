@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>bg.jpg</file>
+        <file>bomb.png</file>
+        <file>osama.jpg</file>
+        <file>fixedWall.jpg</file>
+    </qresource>
+</RCC>
