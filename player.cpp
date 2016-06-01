@@ -10,19 +10,19 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 void Player::keyPressEvent(QKeyEvent *event){
     // move the player
     if (event->key() == Qt::Key_Left){
-        if (pos().x() > 0)
+        if (pos().x() > 0 && !scene()->itemAt(x()-50,y(), QTransform()))
             setPos(x()-50,y());
     }
     else if (event->key() == Qt::Key_Right){
-        if (pos().x() + 100 <= 800)
+        if ((pos().x() + 100 <= 800 && !scene()->itemAt(x()+50,y(), QTransform())))
             setPos(x()+50,y());
     }
     else if (event->key() == Qt::Key_Up){
-        if (pos().y() > 0)
+        if (pos().y() > 0 && !scene()->itemAt(x(),y()-50, QTransform()))
             setPos(x(),y()-50);
     }
     else if (event->key() == Qt::Key_Down){
-        if (pos().y() + 100 <= 600)
+        if (pos().y() + 100 <= 600 && !scene()->itemAt(x(),y()+50, QTransform()))
             setPos(x(),y()+50);
     }
 
