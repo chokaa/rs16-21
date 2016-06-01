@@ -23,6 +23,7 @@ Game::Game(QWidget *parent){
     // add the player to the scene
     scene->addItem(player);
 
+    // add fixed walls (walls that can't be destroyed)
     for(int i=50; i<=350; i+=100){
         for(int j=50; j<=250; j+=100){
             if(i==350 && j==250)
