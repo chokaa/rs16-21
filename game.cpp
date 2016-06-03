@@ -58,9 +58,8 @@ Game::Game(QWidget *parent){
             scene->addItem(wall);
         }
     }
-show();
-    // normal walls
 
+    // normal wall
     for(int i=0;i<16;i++){
         for(int j=0;j<12;j++){
             if(!(scene->itemAt(i*50,j*50, QTransform()))){
@@ -75,20 +74,24 @@ show();
     }
 
     //ciscenje zidova oko igraca na pocetku
+    if(scene->itemAt(50, 0, QTransform()))
+        scene->removeItem((scene->itemAt(50,0, QTransform())));
+    if(scene->itemAt(100, 0, QTransform()))
+        scene->removeItem((scene->itemAt(100,0, QTransform())));
+    if(scene->itemAt(0, 50, QTransform()))
+        scene->removeItem((scene->itemAt(0,50, QTransform())));
+    if(scene->itemAt(0, 100, QTransform()))
+        scene->removeItem((scene->itemAt(0,100, QTransform())));
+    if(scene->itemAt(650, 550, QTransform()))
+        scene->removeItem((scene->itemAt(650,550, QTransform())));
+    if(scene->itemAt(700, 550, QTransform()))
+        scene->removeItem((scene->itemAt(700,550, QTransform())));
+    if(scene->itemAt(750, 500, QTransform()))
+        scene->removeItem((scene->itemAt(750,500, QTransform())));
+    if(scene->itemAt(750, 450, QTransform()))
+        scene->removeItem((scene->itemAt(750,450, QTransform())));
+    if(scene->itemAt(750, 550, QTransform()))
+        scene->removeItem((scene->itemAt(750,550, QTransform())));
 
-     scene->removeItem((scene->itemAt(50,0, QTransform())));
-     scene->removeItem((scene->itemAt(100,0, QTransform())));
-     scene->removeItem((scene->itemAt(0,50, QTransform())));
-     scene->removeItem((scene->itemAt(0,100, QTransform())));
-
-     scene->removeItem((scene->itemAt(650,550, QTransform())));
-     scene->removeItem((scene->itemAt(700,550, QTransform())));
-     scene->removeItem((scene->itemAt(750,500, QTransform())));
-     scene->removeItem((scene->itemAt(750,450, QTransform())));
-
-     //ovo se brise kad ubacimo drugog igraca
-     scene->removeItem((scene->itemAt(750,550, QTransform())));
-
-
-
+    show();
 }

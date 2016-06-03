@@ -25,7 +25,7 @@ void Bomb::explode(){
     fire->setPos(x(),y());
     scene()->addItem(fire);
 
-    for (int i=1; i<5; i++){
+    for (int i=1; i<2; i++){
       if(!scene()->itemAt(x()+i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()+i*50,y());
@@ -41,9 +41,13 @@ void Bomb::explode(){
           scene()->addItem(fire);
           break;
       }
+      // game over
+      else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(Player)){
+          scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
+      }
     }
 
-    for (int i=1; i<5; i++){
+    for (int i=1; i<2; i++){
       if(!scene()->itemAt(x()-i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()-i*50,y());
@@ -59,9 +63,13 @@ void Bomb::explode(){
           scene()->addItem(fire);
           break;
       }
+      // game over
+      else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(Player)){
+          scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
+      }
     }
 
-    for (int i=1; i<5; i++){
+    for (int i=1; i<2; i++){
       if(!scene()->itemAt(x(),y()+i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()+i*50);
@@ -77,9 +85,13 @@ void Bomb::explode(){
           scene()->addItem(fire);
           break;
       }
+      // game over
+      else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(Player)){
+          scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
+      }
     }
 
-    for (int i=1; i<5; i++){
+    for (int i=1; i<2; i++){
       if(!scene()->itemAt(x(),y()-i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()-i*50);
@@ -94,6 +106,10 @@ void Bomb::explode(){
           fire->setPos(x(),y()-i*50);
           scene()->addItem(fire);
           break;
+      }
+      // game over
+      else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(Player)){
+          scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
       }
     }
 

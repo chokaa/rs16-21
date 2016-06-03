@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include "fixedwall.h"
 #include "normalwall.h"
+#include <QList>
 #include <iostream>
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
@@ -49,9 +50,21 @@ void Player::keyPressEvent(QKeyEvent *event){
 
     // place bomb with the spacebar
     else if (event->key() == Qt::Key_Space){
-        // create a bomb
-        Bomb * bomb = new Bomb();
-        bomb->setPos(x(),y());
-        scene()->addItem(bomb);
+
+        QList<QGraphicsItem *> scene_items = scene()->items();
+        int a=0;
+
+        // check whether there is another bomb on the scene
+        foreach(QGraphicsItem *item, scene_items){
+            if((typeid(*item) == typeid(Bomb)))
+                a++;
+        }
+
+        // create a bomb if there isnt another bomb present
+        if(a==0){
+            Bomb * bomb = new Bomb();
+            bomb->setPos(x(),y());
+            scene()->addItem(bomb);
+        }
     }
 }
