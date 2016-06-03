@@ -32,7 +32,6 @@ void Bomb::explode(){
 void Bomb::fire()
 {
     setPixmap(QPixmap(":/images/faja.png"));
-    sleep(0);
     moveBy(50,0);
     setPixmap(QPixmap(":/images/faja.png"));
 }

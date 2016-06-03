@@ -11,6 +11,7 @@ public:
     Bomb(QGraphicsItem * parent=0);
 public slots:
     void explode();
+    void fire();
 };
 
 #endif // BOMB_H
