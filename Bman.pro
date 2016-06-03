@@ -16,13 +16,17 @@ SOURCES += main.cpp \
     game.cpp \
     player.cpp \
     bomb.cpp \
-    fixedwall.cpp
+    fixedwall.cpp \
+    fire.cpp \
+    normalwall.cpp
 
 HEADERS  += \
     game.h \
     player.h \
     bomb.h \
-    fixedwall.h
+    fixedwall.h \
+    fire.h \
+    normalwall.h
 
 RESOURCES += \
     res.qrc

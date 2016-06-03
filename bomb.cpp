@@ -5,6 +5,8 @@
 #include <QPixmap>
 #include <QLabel>
 #include "game.h"
+#include "fire.h"
+#include "fixedwall.h"
 
 extern Game * game;
 
@@ -14,25 +16,86 @@ Bomb::Bomb(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
     QTimer *timer = new QTimer(this);
     timer->setSingleShot(true);
     connect(timer,SIGNAL(timeout()),this,SLOT(explode()));
-    timer->start(2750);
-
-    QTimer *timer1 = new QTimer(this);
-    timer1->setSingleShot(true);
-    connect(timer1,SIGNAL(timeout()),this,SLOT(fire()));
-    timer1->start(2000);
-
-
-
+    timer->start(2000);
 }
 
 void Bomb::explode(){
-    scene()->removeItem(this);
-}
 
-void Bomb::fire()
-{
-    setPixmap(QPixmap(":/images/faja.png"));
-    sleep(0);
-    moveBy(50,0);
-    setPixmap(QPixmap(":/images/faja.png"));
+    Fire * fire = new Fire();
+    fire->setPos(x(),y());
+    scene()->addItem(fire);
+
+    for (int i=1; i<5; i++){
+      if(!scene()->itemAt(x()+i*50,y(), QTransform())){
+          Fire * fire = new Fire();
+          fire->setPos(x()+i*50,y());
+          scene()->addItem(fire);
+       }
+      else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(fixedWall)){
+          break;
+      }
+      else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(normalWall)){
+          scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x()+i*50,y());
+          scene()->addItem(fire);
+          break;
+      }
+    }
+
+    for (int i=1; i<5; i++){
+      if(!scene()->itemAt(x()-i*50,y(), QTransform())){
+          Fire * fire = new Fire();
+          fire->setPos(x()-i*50,y());
+          scene()->addItem(fire);
+       }
+      else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(fixedWall)){
+        break;
+      }
+      else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(normalWall)){
+          scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x()-i*50,y());
+          scene()->addItem(fire);
+          break;
+      }
+    }
+
+    for (int i=1; i<5; i++){
+      if(!scene()->itemAt(x(),y()+i*50, QTransform())){
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()+i*50);
+          scene()->addItem(fire);
+       }
+      else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(fixedWall)){
+        break;
+      }
+      else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(normalWall)){
+          scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()+i*50);
+          scene()->addItem(fire);
+          break;
+      }
+    }
+
+    for (int i=1; i<5; i++){
+      if(!scene()->itemAt(x(),y()-i*50, QTransform())){
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()-i*50);
+          scene()->addItem(fire);
+       }
+      else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(fixedWall)){
+        break;
+      }
+      else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(normalWall)){
+          scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()-i*50);
+          scene()->addItem(fire);
+          break;
+      }
+    }
+
+    scene()->removeItem(this);
 }

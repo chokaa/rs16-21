@@ -2,6 +2,7 @@
 #include <QGraphicsTextItem>
 #include <QBrush>
 #include <QImage>
+#include <stdlib.h>
 
 Game::Game(QWidget *parent){
     // create the scene
@@ -57,6 +58,37 @@ Game::Game(QWidget *parent){
             scene->addItem(wall);
         }
     }
+show();
+    // normal walls
 
-    show();
+    for(int i=0;i<16;i++){
+        for(int j=0;j<12;j++){
+            if(!(scene->itemAt(i*50,j*50, QTransform()))){
+            int r=rand() % 10 + 1;
+                if(r!=1){
+                    nwall = new normalWall();
+                    nwall->setPos(i*50,j*50);
+                    scene->addItem(nwall);
+                }
+            }
+        }
+    }
+
+    //ciscenje zidova oko igraca na pocetku
+
+     scene->removeItem((scene->itemAt(50,0, QTransform())));
+     scene->removeItem((scene->itemAt(100,0, QTransform())));
+     scene->removeItem((scene->itemAt(0,50, QTransform())));
+     scene->removeItem((scene->itemAt(0,100, QTransform())));
+
+     scene->removeItem((scene->itemAt(650,550, QTransform())));
+     scene->removeItem((scene->itemAt(700,550, QTransform())));
+     scene->removeItem((scene->itemAt(750,500, QTransform())));
+     scene->removeItem((scene->itemAt(750,450, QTransform())));
+
+     //ovo se brise kad ubacimo drugog igraca
+     scene->removeItem((scene->itemAt(750,550, QTransform())));
+
+
+
 }
