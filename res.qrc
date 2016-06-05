@@ -6,5 +6,6 @@
         <file>faja.png</file>
         <file>fixedWall.jpg</file>
         <file>normalwall.jpg</file>
+        <file>firepowerup.jpg</file>
     </qresource>
 </RCC>

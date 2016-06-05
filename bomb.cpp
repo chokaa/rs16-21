@@ -7,6 +7,11 @@
 #include "game.h"
 #include "fire.h"
 #include "fixedwall.h"
+#include "normalwall.h"
+#include "powerups.h"
+#include <typeinfo>
+
+extern int duzina_eksplozije;
 
 extern Game * game;
 
@@ -25,7 +30,7 @@ void Bomb::explode(){
     fire->setPos(x(),y());
     scene()->addItem(fire);
 
-    for (int i=1; i<2; i++){
+    for (int i=1; i<duzina_eksplozije; i++){
       if(!scene()->itemAt(x()+i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()+i*50,y());
@@ -35,10 +40,20 @@ void Bomb::explode(){
           break;
       }
       else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(normalWall)){
+          int number = 17;
+          int randomValue = qrand() % number;
+          if(!(randomValue % 3==0)){
           scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
           Fire * fire = new Fire();
           fire->setPos(x()+i*50,y());
           scene()->addItem(fire);
+          }
+          else{
+          scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
+          powerup = new powerups();
+          powerup->setPos(x()+i*50,y());
+          scene()->addItem(powerup);
+          }
           break;
       }
       // game over
@@ -47,7 +62,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<2; i++){
+    for (int i=1; i<duzina_eksplozije; i++){
       if(!scene()->itemAt(x()-i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()-i*50,y());
@@ -57,10 +72,20 @@ void Bomb::explode(){
         break;
       }
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(normalWall)){
+          int number = 17;
+          int randomValue = qrand() % number;
+          if(!(randomValue % 3==0)){
           scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
           Fire * fire = new Fire();
           fire->setPos(x()-i*50,y());
           scene()->addItem(fire);
+          }
+          else{
+          scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
+          powerup = new powerups();
+          powerup->setPos(x()-i*50,y());
+          scene()->addItem(powerup);
+          }
           break;
       }
       // game over
@@ -69,7 +94,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<2; i++){
+    for (int i=1; i<duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()+i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()+i*50);
@@ -79,10 +104,20 @@ void Bomb::explode(){
         break;
       }
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(normalWall)){
+          int number = 17;
+          int randomValue = qrand() % number;
+          if(!(randomValue % 3==0)){
           scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
           Fire * fire = new Fire();
           fire->setPos(x(),y()+i*50);
           scene()->addItem(fire);
+          }
+          else{
+          scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
+          powerup = new powerups();
+          powerup->setPos(x(),y()+i*50);
+          scene()->addItem(powerup);
+          }
           break;
       }
       // game over
@@ -91,7 +126,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<2; i++){
+    for (int i=1; i<duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()-i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()-i*50);
@@ -101,10 +136,21 @@ void Bomb::explode(){
         break;
       }
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(normalWall)){
+          int number = 17;
+          int randomValue = qrand() % number;
+          if(!(randomValue % 3==0)){
           scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
           Fire * fire = new Fire();
           fire->setPos(x(),y()-i*50);
           scene()->addItem(fire);
+          }
+          else{
+          scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
+          powerup = new powerups();
+          powerup->setPos(x(),y()-i*50);
+          scene()->addItem(powerup);
+          }
+
           break;
       }
       // game over

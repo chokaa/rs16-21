@@ -8,6 +8,7 @@
 #include "fixedwall.h"
 #include "normalwall.h"
 
+
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);

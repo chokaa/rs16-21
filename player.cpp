@@ -7,20 +7,30 @@
 #include "normalwall.h"
 #include <QList>
 #include <iostream>
+#include "powerups.h"
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/images/osama.jpg"));
 }
 
+int duzina_eksplozije=2;
+
 void Player::keyPressEvent(QKeyEvent *event){
     // move the player
+
     if (event->key() == Qt::Key_Left){
         if (pos().x() > 0 && !scene()->itemAt(x()-50,y(), QTransform()))
             setPos(x()-50,y());
         else if((scene()->itemAt(x()-50,y(), QTransform())))
             if(!((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(fixedWall)) &&
-               !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(normalWall)))
-                setPos(x()-50, y());
+               !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(normalWall))){
+                if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
+                    scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
+
+                }
+                setPos(x()-50,y());
+                duzina_eksplozije++;
+            }
     }
     else if (event->key() == Qt::Key_Right){
         if (pos().x() + 100 <= 800 && !(scene()->itemAt(x()+50,y(), QTransform()))){
@@ -28,24 +38,42 @@ void Player::keyPressEvent(QKeyEvent *event){
         }
         else if((scene()->itemAt(x()+50,y(), QTransform())))
             if(!((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(fixedWall)) &&
-               !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(normalWall)))
-                setPos(x()+50, y());
+               !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(normalWall))){
+                if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(powerups)){
+                    scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
+
+                }
+                setPos(x()+50,y());
+                duzina_eksplozije++;
+            }
     }
     else if (event->key() == Qt::Key_Up){
         if (pos().y() > 0 && !scene()->itemAt(x(),y()-50, QTransform()))
             setPos(x(),y()-50);
         else if((scene()->itemAt(x(),y()-50, QTransform())))
             if(!((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(fixedWall)) &&
-               !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(normalWall)))
-                setPos(x(), y()-50);
+               !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(normalWall))){
+                if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(powerups)){
+                    scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
+
+                }
+                setPos(x(),y()-50);
+                duzina_eksplozije++;
+            }
     }
     else if (event->key() == Qt::Key_Down){
         if (pos().y() + 100 <= 600 && !scene()->itemAt(x(),y()+50, QTransform()))
             setPos(x(),y()+50);
         else if((scene()->itemAt(x(),y()+50, QTransform())))
             if(!((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(fixedWall)) &&
-               !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(normalWall)))
-                setPos(x(), y()+50);
+               !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(normalWall))){
+                if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(powerups)){
+                    scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
+
+                }
+                setPos(x(),y()+50);
+                duzina_eksplozije++;
+            }
     }
 
     // place bomb with the spacebar

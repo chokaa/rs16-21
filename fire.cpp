@@ -10,7 +10,7 @@
 extern Game * game;
 
 Fire::Fire(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
-    // draw the bomb
+
     setPixmap(QPixmap(":/images/faja.png"));
 
     QList<QGraphicsItem *> colliding_items = collidingItems();

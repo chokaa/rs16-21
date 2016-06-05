@@ -5,6 +5,8 @@
 #include <QObject>
 #include <QGraphicsItem>
 
+extern int duzina_eksplozije;
+
 class Player:public QObject, public QGraphicsPixmapItem{
 public:
     Player(QGraphicsItem * parent=0);
