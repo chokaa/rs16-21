@@ -6,6 +6,7 @@
 #include <QGraphicsItem>
 
 extern int duzina_eksplozije;
+extern int tip_powerupa;
 
 class Player:public QObject, public QGraphicsPixmapItem{
 public:

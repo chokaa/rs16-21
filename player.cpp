@@ -12,9 +12,10 @@
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/images/osama.jpg"));
 }
+extern int tip_powerupa;
 
 int duzina_eksplozije=2;
-
+int broj_bombi = 1;
 void Player::keyPressEvent(QKeyEvent *event){
     // move the player
 
@@ -29,7 +30,10 @@ void Player::keyPressEvent(QKeyEvent *event){
 
                 }
                 setPos(x()-50,y());
+                if(tip_powerupa==1)
                 duzina_eksplozije++;
+                if(tip_powerupa==2)
+                broj_bombi++;
             }
     }
     else if (event->key() == Qt::Key_Right){
@@ -44,7 +48,10 @@ void Player::keyPressEvent(QKeyEvent *event){
 
                 }
                 setPos(x()+50,y());
+                if(tip_powerupa==1)
                 duzina_eksplozije++;
+                if(tip_powerupa==2)
+                broj_bombi++;
             }
     }
     else if (event->key() == Qt::Key_Up){
@@ -58,7 +65,10 @@ void Player::keyPressEvent(QKeyEvent *event){
 
                 }
                 setPos(x(),y()-50);
+                if(tip_powerupa==1)
                 duzina_eksplozije++;
+                if(tip_powerupa==2)
+                broj_bombi++;
             }
     }
     else if (event->key() == Qt::Key_Down){
@@ -72,7 +82,10 @@ void Player::keyPressEvent(QKeyEvent *event){
 
                 }
                 setPos(x(),y()+50);
+                if(tip_powerupa==1)
                 duzina_eksplozije++;
+                if(tip_powerupa==2)
+                broj_bombi++;
             }
     }
 
@@ -89,7 +102,7 @@ void Player::keyPressEvent(QKeyEvent *event){
         }
 
         // create a bomb if there isnt another bomb present
-        if(a==0){
+        if(a<broj_bombi){
             Bomb * bomb = new Bomb();
             bomb->setPos(x(),y());
             scene()->addItem(bomb);
