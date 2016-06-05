@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     bomb.cpp \
     fixedwall.cpp \
     fire.cpp \
-    normalwall.cpp
+    normalwall.cpp \
+    powerups.cpp
 
 HEADERS  += \
     game.h \
@@ -26,7 +27,8 @@ HEADERS  += \
     bomb.h \
     fixedwall.h \
     fire.h \
-    normalwall.h
+    normalwall.h \
+    powerups.h
 
 RESOURCES += \
     res.qrc
