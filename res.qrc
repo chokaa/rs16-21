@@ -1,11 +1,13 @@
 <RCC>
     <qresource prefix="/images">
         <file>bg.jpg</file>
-        <file>bomb.png</file>
         <file>osama.jpg</file>
         <file>faja.png</file>
         <file>fixedWall.jpg</file>
         <file>normalwall.jpg</file>
         <file>firepowerup.jpg</file>
+        <file>bombpowerup.jpg</file>
+        <file>bomb.jpg</file>
+        <file>dead.jpg</file>
     </qresource>
 </RCC>

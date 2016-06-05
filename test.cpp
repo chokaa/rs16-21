@@ -1,35 +1,32 @@
-#include "bomb.h"
+#include "test.h"
 #include <QTimer>
 #include <QGraphicsScene>
+#include "fire.h"
+#include "fixedwall.h"
+#include "normalwall.h"
+
 #include <QList>
 #include <QPixmap>
 #include <QLabel>
 #include "game.h"
-#include "fire.h"
-#include "fixedwall.h"
-#include "normalwall.h"
+
 #include "powerups.h"
 #include <typeinfo>
 
 extern int duzina_eksplozije;
 
-
-Bomb::Bomb(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
-    // draw the bomb
-    setPixmap(QPixmap(":/images/bomb.jpg"));
-    timer = new QTimer(this);
+Test::Test(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
+    setPixmap(QPixmap(":/images/bomb.png"));
+    QTimer *timer = new QTimer(this);
     timer->setSingleShot(true);
-    connect(timer,SIGNAL(timeout()),this,SLOT(explode()));
-    timer->start(1500);
+    connect(timer,SIGNAL(timeout()),this,SLOT(testic()));
+    timer->start(2000);
+
+
 }
 
-void Bomb::StopTimer(){
-   timer->stop();
-   explode();
-}
 
-void Bomb::explode(){
-    if((typeid(*(scene()->itemAt(x(),y(), QTransform())))) == typeid(Bomb)){
+void Test::testic(){
 
     Fire * fire = new Fire();
     fire->setPos(x(),y());
@@ -48,10 +45,10 @@ void Bomb::explode(){
           int number = 17;
           int randomValue = qrand() % number;
           if(!(randomValue % 3==0)){
-              scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
-              Fire * fire = new Fire();
-              fire->setPos(x()+i*50,y());
-              scene()->addItem(fire);
+          scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x()+i*50,y());
+          scene()->addItem(fire);
           }
           else{
           scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
@@ -61,17 +58,9 @@ void Bomb::explode(){
           }
           break;
       }
-      else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(Bomb)){
-        Bomb *bomb = (Bomb*)(scene()->itemAt(x()+i*50,y(), QTransform()));
-        bomb->StopTimer();
-      }
       // game over
       else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(Player)){
-          Player *player= (Player*)(scene()->itemAt(x()+i*50,y(), QTransform()));
-          player->dead();
-          Fire * fire = new Fire();
-          fire->setPos(x()+i*50,y());
-          scene()->addItem(fire);
+          scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
       }
     }
 
@@ -104,14 +93,9 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(this)){
            scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
       }
-      else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(Bomb)){
-        Bomb *bomb = (Bomb*)(scene()->itemAt(x()-i*50,y(), QTransform()));
-        bomb->StopTimer();
-      }
       // game over
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(Player)){
-          Player *player= (Player*)(scene()->itemAt(x()-i*50,y(), QTransform()));
-          player->dead();
+          scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
       }
     }
 
@@ -141,14 +125,9 @@ void Bomb::explode(){
           }
           break;
       }
-      else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(Bomb)){
-        Bomb *bomb = (Bomb*)(scene()->itemAt(x(),y()+i*50, QTransform()));
-        bomb->StopTimer();
-      }
       // game over
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(Player)){
-          Player *player= (Player*)(scene()->itemAt(x(),y()+i*50, QTransform()));
-          player->dead();
+          scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
       }
     }
 
@@ -179,18 +158,11 @@ void Bomb::explode(){
 
           break;
       }
-      else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(Bomb)){
-        Bomb *bomb = (Bomb*)(scene()->itemAt(x(),y()-i*50, QTransform()));
-        bomb->StopTimer();
-      }
       // game over
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(Player)){
-          Player *player= (Player*)(scene()->itemAt(x(),y()-i*50, QTransform()));
-          player->dead();
+          scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
       }
     }
 
     scene()->removeItem(this);
-
-}
 }

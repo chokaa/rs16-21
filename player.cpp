@@ -8,6 +8,7 @@
 #include <QList>
 #include <iostream>
 #include "powerups.h"
+#include "fire.h"
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/images/osama.jpg"));
@@ -16,25 +17,39 @@ extern int tip_powerupa;
 
 int duzina_eksplozije=2;
 int broj_bombi = 1;
+
+void Player::dead(){
+    setPixmap(QPixmap(":/images/dead.jpg"));
+    this->clearFocus();
+}
+
 void Player::keyPressEvent(QKeyEvent *event){
     // move the player
 
     if (event->key() == Qt::Key_Left){
         if (pos().x() > 0 && !scene()->itemAt(x()-50,y(), QTransform()))
             setPos(x()-50,y());
+
         else if((scene()->itemAt(x()-50,y(), QTransform())))
             if(!((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(fixedWall)) &&
+               !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(normalWall))){
-                if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
-                    scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
+                    if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
+                        scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
+                        setPos(x()-50,y());
+                        if(tip_powerupa==1)
+                        duzina_eksplozije++;
+                        if(tip_powerupa==2)
+                        broj_bombi++;
+                    }
 
-                }
-                setPos(x()-50,y());
-                if(tip_powerupa==1)
-                duzina_eksplozije++;
-                if(tip_powerupa==2)
-                broj_bombi++;
-            }
+
+                    //ulazak u vatru
+                    if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Fire)){
+                      setPos(x()-50,y());
+                      this->dead();
+                    }
+              }
     }
     else if (event->key() == Qt::Key_Right){
         if (pos().x() + 100 <= 800 && !(scene()->itemAt(x()+50,y(), QTransform()))){
@@ -42,16 +57,23 @@ void Player::keyPressEvent(QKeyEvent *event){
         }
         else if((scene()->itemAt(x()+50,y(), QTransform())))
             if(!((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(fixedWall)) &&
+               !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(powerups)){
                     scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
-
+                    setPos(x()+50,y());
+                    if(tip_powerupa==1)
+                    duzina_eksplozije++;
+                    if(tip_powerupa==2)
+                    broj_bombi++;
                 }
-                setPos(x()+50,y());
-                if(tip_powerupa==1)
-                duzina_eksplozije++;
-                if(tip_powerupa==2)
-                broj_bombi++;
+
+
+                //ulazak u vatru
+                if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Fire)){
+                  setPos(x()+50,y());
+                  this->dead();
+                }
             }
     }
     else if (event->key() == Qt::Key_Up){
@@ -59,16 +81,23 @@ void Player::keyPressEvent(QKeyEvent *event){
             setPos(x(),y()-50);
         else if((scene()->itemAt(x(),y()-50, QTransform())))
             if(!((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(fixedWall)) &&
+               !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(powerups)){
                     scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
-
+                    setPos(x(),y()-50);
+                    if(tip_powerupa==1)
+                    duzina_eksplozije++;
+                    if(tip_powerupa==2)
+                    broj_bombi++;
                 }
-                setPos(x(),y()-50);
-                if(tip_powerupa==1)
-                duzina_eksplozije++;
-                if(tip_powerupa==2)
-                broj_bombi++;
+
+
+                //ulazak u vatru
+                if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Fire)){
+                  setPos(x(),y()-50);
+                  this->dead();
+                }
             }
     }
     else if (event->key() == Qt::Key_Down){
@@ -76,16 +105,24 @@ void Player::keyPressEvent(QKeyEvent *event){
             setPos(x(),y()+50);
         else if((scene()->itemAt(x(),y()+50, QTransform())))
             if(!((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(fixedWall)) &&
+               !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(powerups)){
                     scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
 
+                    setPos(x(),y()+50);
+                    if(tip_powerupa==1)
+                    duzina_eksplozije++;
+                    if(tip_powerupa==2)
+                    broj_bombi++;
                 }
-                setPos(x(),y()+50);
-                if(tip_powerupa==1)
-                duzina_eksplozije++;
-                if(tip_powerupa==2)
-                broj_bombi++;
+
+
+                //ulazak u vatru
+                if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Fire)){
+                  setPos(x(),y()+50);
+                  this->dead();
+                }
             }
     }
 
