@@ -11,9 +11,6 @@
 #include "powerups.h"
 #include <typeinfo>
 
-extern int duzina_eksplozije;
-
-
 Bomb::Bomb(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     // draw the bomb
     setPixmap(QPixmap(":/images/bomb.jpg"));
@@ -35,7 +32,7 @@ void Bomb::explode(){
     fire->setPos(x(),y());
     scene()->addItem(fire);
 
-    for (int i=1; i<duzina_eksplozije; i++){
+    for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()+i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()+i*50,y());
@@ -75,7 +72,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<duzina_eksplozije; i++){
+    for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()-i*50,y(), QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x()-i*50,y());
@@ -115,7 +112,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<duzina_eksplozije; i++){
+    for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()+i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()+i*50);
@@ -152,7 +149,7 @@ void Bomb::explode(){
       }
     }
 
-    for (int i=1; i<duzina_eksplozije; i++){
+    for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()-i*50, QTransform())){
           Fire * fire = new Fire();
           fire->setPos(x(),y()-i*50);

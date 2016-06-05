@@ -13,6 +13,7 @@ public:
     Bomb(QGraphicsItem * parent=0);
     powerups * powerup;
     QTimer *timer;
+    int duzina_eksplozije = 2;
 
 public slots:
     void explode();
