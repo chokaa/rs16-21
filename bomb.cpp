@@ -26,11 +26,7 @@ void Bomb::StopTimer(){
 }
 
 void Bomb::explode(){
-    if((typeid(*(scene()->itemAt(x(),y(), QTransform())))) == typeid(Bomb)){
 
-    Fire * fire = new Fire();
-    fire->setPos(x(),y());
-    scene()->addItem(fire);
 
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()+i*50,y(), QTransform())){
@@ -215,7 +211,18 @@ void Bomb::explode(){
       }
     }
 
+    setPixmap(QPixmap());
+    if((typeid(*(scene()->itemAt(x(),y(), QTransform())))) == typeid(Player)){
+        Player *player= (Player*)(scene()->itemAt(x(),y(), QTransform()));
+        player->dead();
+    }
+
+    Fire * fire = new Fire();
+    fire->setPos(x(),y());
+    scene()->addItem(fire);
+
+
+
     scene()->removeItem(this);
 
-}
 }
