@@ -9,7 +9,7 @@ class powerups:public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     powerups(QGraphicsItem * parent=0);
-    int redni_broj_powerupa=0;
+    int redni_broj_powerupa=2;
 };
 
 #endif // POWERUPS_H

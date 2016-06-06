@@ -33,7 +33,12 @@ void Player::keyPressEvent(QKeyEvent *event){
             if(!((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(fixedWall)) &&
                !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(normalWall))){
-                    if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
+                //ulazak u vatru
+                if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Fire)){
+                  setPos(x()-50,y());
+                  this->dead();
+                }
+                if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
                         if (((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==1){
                         duzina=duzina+1;
                         }
@@ -42,12 +47,9 @@ void Player::keyPressEvent(QKeyEvent *event){
                         }
                         scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
                         setPos(x()-50,y());
-                    }
-                    //ulazak u vatru
-                    if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Fire)){
-                      setPos(x()-50,y());
-                      this->dead();
-                    }
+
+                }
+
               }
     }
     else if (event->key() == Qt::Key_Right){
@@ -59,6 +61,11 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(powerups)){
+                    //ulazak u vatru
+                    if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Fire)){
+                      setPos(x()+50,y());
+                      this->dead();
+                    }
                     if (((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==1){
                     duzina=duzina+1;
                     }
@@ -67,13 +74,6 @@ void Player::keyPressEvent(QKeyEvent *event){
                     }
                     scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
                     setPos(x()+50,y());
-                }
-
-
-                //ulazak u vatru
-                if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Fire)){
-                  setPos(x()+50,y());
-                  this->dead();
                 }
             }
     }
@@ -85,6 +85,11 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(powerups)){
+                    //ulazak u vatru
+                    if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Fire)){
+                      setPos(x(),y()-50);
+                      this->dead();
+                    }
                     if (((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==1){
                     duzina=duzina+1;
                     }
@@ -92,14 +97,7 @@ void Player::keyPressEvent(QKeyEvent *event){
                     this->broj_bombi++;
                     }
                     scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
-                    setPos(x(),y()+50);
-                }
-
-
-                //ulazak u vatru
-                if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Fire)){
-                  setPos(x(),y()-50);
-                  this->dead();
+                    setPos(x(),y()-50);
                 }
             }
     }
@@ -111,6 +109,11 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(powerups)){
+                    //ulazak u vatru
+                    if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Fire)){
+                      setPos(x(),y()+50);
+                      this->dead();
+                    }
                     if (((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==1){
                     duzina=duzina+1;
                     }
@@ -119,13 +122,6 @@ void Player::keyPressEvent(QKeyEvent *event){
                     }
                     scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
                     setPos(x(),y()+50);
-                }
-
-
-                //ulazak u vatru
-                if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Fire)){
-                  setPos(x(),y()+50);
-                  this->dead();
                 }
             }
     }
