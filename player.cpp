@@ -15,8 +15,7 @@ Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 }
 extern int tip_powerupa;
 
-int duzina_eksplozije=2;
-int broj_bombi = 1;
+int duzina=2;
 
 void Player::dead(){
     setPixmap(QPixmap(":/images/dead.jpg"));
@@ -35,15 +34,15 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(normalWall))){
                     if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
+                        if (((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==1){
+                        duzina=duzina+1;
+                        }
+                        if(((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==2){
+                        this->broj_bombi++;
+                        }
                         scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
                         setPos(x()-50,y());
-                        if(tip_powerupa==1)
-                        duzina_eksplozije++;
-                        if(tip_powerupa==2)
-                        broj_bombi++;
                     }
-
-
                     //ulazak u vatru
                     if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Fire)){
                       setPos(x()-50,y());
@@ -60,12 +59,14 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(powerups)){
+                    if (((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==1){
+                    duzina=duzina+1;
+                    }
+                    if(((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==2){
+                    this->broj_bombi++;
+                    }
                     scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
                     setPos(x()+50,y());
-                    if(tip_powerupa==1)
-                    duzina_eksplozije++;
-                    if(tip_powerupa==2)
-                    broj_bombi++;
                 }
 
 
@@ -84,12 +85,14 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(powerups)){
+                    if (((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==1){
+                    duzina=duzina+1;
+                    }
+                    if(((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==2){
+                    this->broj_bombi++;
+                    }
                     scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
-                    setPos(x(),y()-50);
-                    if(tip_powerupa==1)
-                    duzina_eksplozije++;
-                    if(tip_powerupa==2)
-                    broj_bombi++;
+                    setPos(x(),y()+50);
                 }
 
 
@@ -108,13 +111,14 @@ void Player::keyPressEvent(QKeyEvent *event){
                !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(Bomb)) &&
                !((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(normalWall))){
                 if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(powerups)){
+                    if (((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==1){
+                    duzina=duzina+1;
+                    }
+                    if(((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==2){
+                    this->broj_bombi++;
+                    }
                     scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
-
                     setPos(x(),y()+50);
-                    if(tip_powerupa==1)
-                    duzina_eksplozije++;
-                    if(tip_powerupa==2)
-                    broj_bombi++;
                 }
 
 
@@ -139,9 +143,10 @@ void Player::keyPressEvent(QKeyEvent *event){
         }
 
         // create a bomb if there isnt another bomb present
-        if(a<broj_bombi){
+        if(a<this->broj_bombi){
             Bomb * bomb = new Bomb();
             bomb->setPos(x(),y());
+            bomb->duzina_eksplozije=duzina;
             scene()->addItem(bomb);
         }
     }

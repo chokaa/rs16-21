@@ -41,6 +41,13 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(fixedWall)){
           break;
       }
+      else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(powerups)){
+          scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x()+i*50,y());
+          scene()->addItem(fire);
+          break;
+      }
       else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(normalWall)){
           int number = 17;
           int randomValue = qrand() % number;
@@ -52,7 +59,7 @@ void Bomb::explode(){
           }
           else{
           scene()->removeItem((scene()->itemAt(x()+i*50,y(), QTransform())));
-          powerup = new powerups();
+          powerups * powerup = new powerups();
           powerup->setPos(x()+i*50,y());
           scene()->addItem(powerup);
           }
@@ -81,6 +88,13 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(fixedWall)){
         break;
       }
+      else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(powerups)){
+          scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x()-i*50,y());
+          scene()->addItem(fire);
+          break;
+      }
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(normalWall)){
           int number = 17;
           int randomValue = qrand() % number;
@@ -92,7 +106,7 @@ void Bomb::explode(){
           }
           else{
           scene()->removeItem((scene()->itemAt(x()-i*50,y(), QTransform())));
-          powerup = new powerups();
+          powerups * powerup = new powerups();
           powerup->setPos(x()-i*50,y());
           scene()->addItem(powerup);
           }
@@ -121,6 +135,13 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(fixedWall)){
         break;
       }
+      else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(powerups)){
+          scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()+i*50);
+          scene()->addItem(fire);
+          break;
+      }
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(normalWall)){
           int number = 17;
           int randomValue = qrand() % number;
@@ -132,7 +153,7 @@ void Bomb::explode(){
           }
           else{
           scene()->removeItem((scene()->itemAt(x(),y()+i*50, QTransform())));
-          powerup = new powerups();
+          powerups * powerup = new powerups();
           powerup->setPos(x(),y()+i*50);
           scene()->addItem(powerup);
           }
@@ -158,6 +179,13 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(fixedWall)){
         break;
       }
+      else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(powerups)){
+          scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()-i*50);
+          scene()->addItem(fire);
+          break;
+      }
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(normalWall)){
           int number = 17;
           int randomValue = qrand() % number;
@@ -169,7 +197,7 @@ void Bomb::explode(){
           }
           else{
           scene()->removeItem((scene()->itemAt(x(),y()-i*50, QTransform())));
-          powerup = new powerups();
+          powerups * powerup = new powerups();
           powerup->setPos(x(),y()-i*50);
           scene()->addItem(powerup);
           }

@@ -13,6 +13,7 @@ public:
     Player(QGraphicsItem * parent=0);
     void keyPressEvent(QKeyEvent * event);
     void dead();
+    int broj_bombi=1;
 };
 
 #endif // PLAYER_H
