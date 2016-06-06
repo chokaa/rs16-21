@@ -2,6 +2,7 @@
 #include <QGraphicsTextItem>
 #include <QBrush>
 #include <QImage>
+#include <QKeyEvent>
 #include <stdlib.h>
 
 Game::Game(QWidget *parent){
@@ -16,15 +17,13 @@ Game::Game(QWidget *parent){
     setFixedSize(800,600);
 
     // create the players
+
     player1 = new Player();
     player2 = new Player();
     player1->setPos(750, 550);
     player2->setPos(0,0);
     // make the players focusable
-    player2->setFlag(QGraphicsItem::ItemIsFocusable);
-    player1->setFlag(QGraphicsItem::ItemIsFocusable);
-    player2->setFocus();
-    // add the players to the scene
+      // add the players to the scene
     scene->addItem(player1);
     scene->addItem(player2);
 
@@ -94,4 +93,29 @@ Game::Game(QWidget *parent){
         scene->removeItem((scene->itemAt(750,500, QTransform())));
     if(scene->itemAt(750, 450, QTransform()))
         scene->removeItem((scene->itemAt(750,450, QTransform())));
+}
+
+void Game::keyPressEvent(QKeyEvent *event){
+    if (event->key() == Qt::Key_Left)
+        this->player1->move(1);
+    else if (event->key() == Qt::Key_Right)
+        this->player1->move(2);
+    else if (event->key() == Qt::Key_Up)
+        this->player1->move(3);
+    else if (event->key() == Qt::Key_Down)
+        this->player1->move(4);
+
+    else if (event->key() == Qt::Key_A)
+        this->player2->move(1);
+    else if (event->key() == Qt::Key_D)
+        this->player2->move(2);
+    else if (event->key() == Qt::Key_W)
+        this->player2->move(3);
+    else if (event->key() == Qt::Key_S)
+        this->player2->move(4);
+
+    else if (event->key() == Qt::Key_Space)
+        this->player1->move(5);
+    else if (event->key() == Qt::Key_G)
+        this->player2->move(5);
 }

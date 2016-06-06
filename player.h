@@ -11,8 +11,8 @@ extern int tip_powerupa;
 class Player:public QObject, public QGraphicsPixmapItem{
 public:
     Player(QGraphicsItem * parent=0);
-    void keyPressEvent(QKeyEvent * event);
     void dead();
+    void move(int s);
     int broj_bombi=1;
 };
 

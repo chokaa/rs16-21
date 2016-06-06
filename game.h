@@ -13,7 +13,7 @@
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
-
+    void keyPressEvent(QKeyEvent * event);
     QGraphicsScene * scene;
     Player * player1;
     Player * player2;
@@ -21,6 +21,7 @@ public:
     normalWall * nwall;
     Bomb *bomb;
     Test *test;
+
 };
 
 #endif // GAME_H
