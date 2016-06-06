@@ -15,14 +15,18 @@ Game::Game(QWidget *parent){
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800,600);
 
-    // create the player
-    player = new Player();
-    player->setPos(0,0);
-    // make the player focusable and set it to be the current focus
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
-    // add the player to the scene
-    scene->addItem(player);
+    // create the players
+    player1 = new Player();
+    player2 = new Player();
+    player1->setPos(750, 550);
+    player2->setPos(0,0);
+    // make the players focusable
+    player2->setFlag(QGraphicsItem::ItemIsFocusable);
+    player1->setFlag(QGraphicsItem::ItemIsFocusable);
+    player2->setFocus();
+    // add the players to the scene
+    scene->addItem(player1);
+    scene->addItem(player2);
 
     // add fixed walls (walls that can't be destroyed)
     for(int i=50; i<=350; i+=100){
@@ -90,8 +94,4 @@ Game::Game(QWidget *parent){
         scene->removeItem((scene->itemAt(750,500, QTransform())));
     if(scene->itemAt(750, 450, QTransform()))
         scene->removeItem((scene->itemAt(750,450, QTransform())));
-    if(scene->itemAt(750, 550, QTransform()))
-        scene->removeItem((scene->itemAt(750,550, QTransform())));
-
-    show();
 }
