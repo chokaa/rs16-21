@@ -92,14 +92,6 @@ Game::Game(QWidget *parent){
         }
     }
 
-    // score
-    score = new Score();
-    score->setPos(100,-50);
-    scene->addItem(score);
-
-    score2 = new Score();
-    score2->setPos(550,600);
-    scene->addItem(score2);
 
     //ciscenje zidova oko igraca na pocetku
     if(scene->itemAt(50, 0, QTransform()))

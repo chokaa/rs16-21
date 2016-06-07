@@ -5,7 +5,6 @@
 #include <QObject>
 #include <QGraphicsItem>
 
-extern int duzina_eksplozije;
 extern int tip_powerupa;
 
 class Player:public QObject, public QGraphicsPixmapItem{
@@ -14,6 +13,7 @@ public:
     void dead();
     void move(int s);
     int broj_bombi=1;
+    int duzina_vatre=2;
 };
 
 #endif // PLAYER_H

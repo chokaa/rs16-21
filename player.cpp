@@ -16,9 +16,7 @@ extern Game * game;
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     setPixmap(QPixmap(":/images/osama.jpg"));
 }
-extern int tip_powerupa;
 
-int duzina=2;
 
 void Player::dead(){
     setPixmap(QPixmap(":/images/dead.jpg"));
@@ -42,12 +40,10 @@ void Player::move(int s){
                             }
                             else if((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(powerups)){
                                     if (((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==1){
-                                    duzina=duzina+1;
+                                    this->duzina_vatre++;
                                     }
                                     if(((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==2){
                                     this->broj_bombi++;
-                                        game->score->increase();
-                                        game->score2->increase();
                                     }
                                     scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
                                     setPos(x()-50,y());
@@ -72,12 +68,10 @@ void Player::move(int s){
                            else if((typeid(*(scene()->itemAt(x()+50,y(), QTransform())))) == typeid(powerups)){
 
                                if (((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==1){
-                               duzina=duzina+1;
+                               this->duzina_vatre++;
                                }
                                if(((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==2){
                                this->broj_bombi++;
-                                   game->score->increase();
-                                   game->score2->increase();
                                }
                                scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
                                setPos(x()+50,y());
@@ -98,12 +92,10 @@ void Player::move(int s){
                            }
                            else if((typeid(*(scene()->itemAt(x(),y()-50, QTransform())))) == typeid(powerups)){
                                if (((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==1){
-                               duzina=duzina+1;
+                               this->duzina_vatre++;
                                }
                                if(((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==2){
                                this->broj_bombi++;
-                                   game->score->increase();
-                                   game->score2->increase();
                                }
                                scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
                                setPos(x(),y()-50);
@@ -124,12 +116,10 @@ void Player::move(int s){
                                 }
                                 else if((typeid(*(scene()->itemAt(x(),y()+50, QTransform())))) == typeid(powerups)){
                                     if (((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==1){
-                                    duzina=duzina+1;
+                                    this->duzina_vatre++;
                                     }
                                     if(((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==2){
                                     this->broj_bombi++;
-                                        game->score->increase();
-                                        game->score2->increase();
                                     }
                                     scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
                                     setPos(x(),y()+50);
@@ -150,7 +140,7 @@ void Player::move(int s){
             if(a<this->broj_bombi){
                 Bomb * bomb = new Bomb();
                 bomb->setPos(x(),y());
-                bomb->duzina_eksplozije=duzina;
+                bomb->duzina_eksplozije=this->duzina_vatre;
                 scene()->addItem(bomb);
             }
         break;
