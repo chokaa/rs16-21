@@ -113,26 +113,28 @@ Game::Game(QWidget *parent){
 }
 
 void Game::keyPressEvent(QKeyEvent *event){
-    if (event->key() == Qt::Key_Left)
-        this->player1->move(1);
-    else if (event->key() == Qt::Key_Right)
-        this->player1->move(2);
-    else if (event->key() == Qt::Key_Up)
-        this->player1->move(3);
-    else if (event->key() == Qt::Key_Down)
-        this->player1->move(4);
+    if(!event->isAutoRepeat()){
+        if (event->key() == Qt::Key_Left)
+            this->player1->move(1);
+        else if (event->key() == Qt::Key_Right)
+            this->player1->move(2);
+        else if (event->key() == Qt::Key_Up)
+            this->player1->move(3);
+        else if (event->key() == Qt::Key_Down)
+            this->player1->move(4);
 
-    else if (event->key() == Qt::Key_A)
-        this->player2->move(1);
-    else if (event->key() == Qt::Key_D)
-        this->player2->move(2);
-    else if (event->key() == Qt::Key_W)
-        this->player2->move(3);
-    else if (event->key() == Qt::Key_S)
-        this->player2->move(4);
+        else if (event->key() == Qt::Key_A)
+            this->player2->move(1);
+        else if (event->key() == Qt::Key_D)
+            this->player2->move(2);
+        else if (event->key() == Qt::Key_W)
+            this->player2->move(3);
+        else if (event->key() == Qt::Key_S)
+            this->player2->move(4);
 
-    else if (event->key() == Qt::Key_Space)
-        this->player1->move(5);
-    else if (event->key() == Qt::Key_G)
-        this->player2->move(5);
+        else if (event->key() == Qt::Key_Enter)
+            this->player1->move(5);
+        else if (event->key() == Qt::Key_G)
+            this->player2->move(5);
+    }
 }

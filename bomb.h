@@ -14,7 +14,7 @@ public:
     powerups * powerup;
     QTimer *timer;
     int duzina_eksplozije = 2;
-
+    int what_player;
 public slots:
     void explode();
     void StopTimer();

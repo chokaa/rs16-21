@@ -12,6 +12,7 @@ public:
     Player(int x,QGraphicsItem * parent=0);
     void dead();
     void move(int s);
+    int curr_bombs=0;
     int br;
     int broj_bombi=1;
     int duzina_vatre=2;

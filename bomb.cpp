@@ -8,8 +8,9 @@
 #include "fire.h"
 #include "fixedwall.h"
 #include "normalwall.h"
-#include "powerups.h"
 #include <typeinfo>
+
+extern Game * game;
 
 Bomb::Bomb(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     // draw the bomb
@@ -17,7 +18,7 @@ Bomb::Bomb(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     timer = new QTimer(this);
     timer->setSingleShot(true);
     connect(timer,SIGNAL(timeout()),this,SLOT(explode()));
-    timer->start(1500);
+    timer->start(2000);
 }
 
 void Bomb::StopTimer(){
@@ -234,5 +235,11 @@ void Bomb::explode(){
           break;
       }
     }
+
+    if(this->what_player==1)
+        game->player1->curr_bombs--;
+    else if(this->what_player==2)
+        game->player2->curr_bombs--;
+
     scene()->removeItem(this);
 }

@@ -10,8 +10,6 @@
 #include "fire.h"
 #include "game.h"
 
-extern Game * game;
-
 Player::Player(int x,QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     this->br=x;
     if(this->br==1)
@@ -146,23 +144,16 @@ void Player::move(int s){
                     }
             break;
         case 5:
-            QList<QGraphicsItem *> scene_items = scene()->items();
-            int a=0;
-
-            // check whether there is another bomb on the scene
-            foreach(QGraphicsItem *item, scene_items){
-                if((typeid(*item) == typeid(Bomb)))
-                    a++;
-            }
-
-            // create a bomb if there isnt another bomb present
-            if(a<this->broj_bombi){
+            if(!((typeid(*(scene()->itemAt(x()+25,y()+25, QTransform())))) == typeid(Bomb)) && curr_bombs<broj_bombi){
                 Bomb * bomb = new Bomb();
+                bomb->what_player=this->br;
                 bomb->setPos(x(),y());
                 bomb->duzina_eksplozije=this->duzina_vatre;
                 scene()->addItem(bomb);
+                this->curr_bombs++;
             }
-        break;
+
+            break;
     }
 }
 
