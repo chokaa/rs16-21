@@ -38,7 +38,7 @@ void Bomb::explode(){
     fire->setPos(x(),y());
     scene()->addItem(fire);
 
-    // crtanje eksplozije + kolizije
+    // crtanje eksplozije & kolizija
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()+i*50+25,y()+25, QTransform())){
             Fire * fire = new Fire();
@@ -83,6 +83,7 @@ void Bomb::explode(){
           Fire * fire = new Fire();
           fire->setPos(x()+i*50,y());
           scene()->addItem(fire);
+          break;
       }
     }
 
@@ -133,6 +134,7 @@ void Bomb::explode(){
           Fire * fire = new Fire();
           fire->setPos(x()-i*50,y());
           scene()->addItem(fire);
+          break;
       }
     }
 
@@ -180,6 +182,7 @@ void Bomb::explode(){
           Fire * fire = new Fire();
           fire->setPos(x(),y()+i*50);
           scene()->addItem(fire);
+          break;
       }
     }
 
@@ -228,6 +231,7 @@ void Bomb::explode(){
           Fire * fire = new Fire();
           fire->setPos(x(),y()-i*50);
           scene()->addItem(fire);
+          break;
       }
     }
     scene()->removeItem(this);

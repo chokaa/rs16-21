@@ -9,7 +9,6 @@
 #include "powerups.h"
 #include "fire.h"
 #include "game.h"
-#include "score.h"
 
 extern Game * game;
 
@@ -23,7 +22,7 @@ Player::Player(int x,QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
 
 void Player::dead(){
-    setPixmap(QPixmap(":/images/dead.jpg"));
+    setPixmap(QPixmap(":/images/img/dead.png"));
     this->clearFocus();
 }
 

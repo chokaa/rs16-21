@@ -1,9 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>firepowerup.jpg</file>
-        <file>bombpowerup.jpg</file>
-        <file>dead.jpg</file>
-        <file>gameover.jpg</file>
         <file>img/back.jpg</file>
         <file>img/fixedblock.jpg</file>
         <file>img/normalwall.jpg</file>
@@ -17,5 +13,8 @@
         <file>img/p2_gore.png</file>
         <file>img/p2_levo.png</file>
         <file>img/fire.jpg</file>
+        <file>img/dead.png</file>
+        <file>img/firepowerup.png</file>
+        <file>img/bombpowerup.png</file>
     </qresource>
 </RCC>

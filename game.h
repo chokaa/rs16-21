@@ -8,7 +8,6 @@
 #include "fixedwall.h"
 #include "normalwall.h"
 #include "bomb.h"
-#include "score.h"
 
 class Game: public QGraphicsView{
 public:
@@ -20,8 +19,6 @@ public:
     fixedWall * wall;
     normalWall * nwall;
     Bomb *bomb;
-    Score *score;
-    Score *score2;
 };
 
 #endif // GAME_H
