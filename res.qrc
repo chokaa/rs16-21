@@ -1,14 +1,21 @@
 <RCC>
     <qresource prefix="/images">
-        <file>bg.jpg</file>
-        <file>osama.jpg</file>
-        <file>faja.png</file>
-        <file>fixedWall.jpg</file>
-        <file>normalwall.jpg</file>
         <file>firepowerup.jpg</file>
         <file>bombpowerup.jpg</file>
-        <file>bomb.jpg</file>
         <file>dead.jpg</file>
         <file>gameover.jpg</file>
+        <file>img/back.jpg</file>
+        <file>img/fixedblock.jpg</file>
+        <file>img/normalwall.jpg</file>
+        <file>img/p1_dole.png</file>
+        <file>img/bomb.png</file>
+        <file>img/p1_desno.png</file>
+        <file>img/p1_gore.png</file>
+        <file>img/p1_levo.png</file>
+        <file>img/p2_desno.png</file>
+        <file>img/p2_dole.png</file>
+        <file>img/p2_gore.png</file>
+        <file>img/p2_levo.png</file>
+        <file>img/fire.jpg</file>
     </qresource>
 </RCC>

@@ -9,9 +9,10 @@ extern int tip_powerupa;
 
 class Player:public QObject, public QGraphicsPixmapItem{
 public:
-    Player(QGraphicsItem * parent=0);
+    Player(int x,QGraphicsItem * parent=0);
     void dead();
     void move(int s);
+    int br;
     int broj_bombi=1;
     int duzina_vatre=2;
 };

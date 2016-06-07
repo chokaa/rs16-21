@@ -2,5 +2,5 @@
 #include <QGraphicsScene>
 
 normalWall::normalWall(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
-    setPixmap(QPixmap(":/images/normalwall.jpg"));
+    setPixmap(QPixmap(":/images/img/normalwall.jpg"));
 }

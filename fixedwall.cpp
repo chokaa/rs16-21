@@ -2,7 +2,7 @@
 #include <QGraphicsScene>
 
 fixedWall::fixedWall(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
-    setPixmap(QPixmap(":/images/fixedWall.jpg"));
+    setPixmap(QPixmap(":/images/img/fixedblock.jpg"));
 }
 
 

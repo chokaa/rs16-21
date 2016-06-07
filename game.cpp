@@ -9,7 +9,7 @@ Game::Game(QWidget *parent){
     // create the scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600); // make the scene 800x600 instead of infinity by infinity (default)
-    setBackgroundBrush(QBrush(QImage(":/images/bg.jpg")));
+    setBackgroundBrush(QBrush(QImage(":/images/img/back.jpg")));
 
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -18,8 +18,8 @@ Game::Game(QWidget *parent){
 
     // create the players
 
-    player1 = new Player();
-    player2 = new Player();
+    player1 = new Player(1);
+    player2 = new Player(2);
     player1->setPos(750, 550);
     player2->setPos(0,0);
     // add the players to the scene
@@ -64,7 +64,7 @@ Game::Game(QWidget *parent){
     // normal wall
     for(int i=0;i<16;i++){
         for(int j=0;j<12;j++){
-            if(!(scene->itemAt(i*50,j*50, QTransform()))){
+            if(!(scene->itemAt(i*50+25,j*50+25, QTransform()))){
             int r=rand() % 10 + 1;
                 if(r!=1){
                     nwall = new normalWall();

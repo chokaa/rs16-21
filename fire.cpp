@@ -11,7 +11,7 @@ extern Game * game;
 
 Fire::Fire(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent){
 
-    setPixmap(QPixmap(":/images/faja.png"));
+    setPixmap(QPixmap(":/images/img/fire.jpg"));
 
 
     QTimer *timer = new QTimer(this);
