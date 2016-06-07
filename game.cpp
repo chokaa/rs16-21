@@ -14,7 +14,7 @@ Game::Game(QWidget *parent){
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(800,600);
+    setFixedSize(900,700);
 
     // create the players
 
@@ -22,8 +22,7 @@ Game::Game(QWidget *parent){
     player2 = new Player();
     player1->setPos(750, 550);
     player2->setPos(0,0);
-    // make the players focusable
-      // add the players to the scene
+    // add the players to the scene
     scene->addItem(player1);
     scene->addItem(player2);
 
@@ -75,6 +74,32 @@ Game::Game(QWidget *parent){
             }
         }
     }
+
+
+    // okvir
+    for(int i=-50; i<=800; i+=50){
+        for(int j=-50; j<=600; j+=650){
+            wall = new fixedWall();
+            wall->setPos(i,j);
+            scene->addItem(wall);
+        }
+    }
+    for(int i=-50; i<=600; i+=50){
+        for(int j=-50; j<=800; j+=850){
+            wall = new fixedWall();
+            wall->setPos(j,i);
+            scene->addItem(wall);
+        }
+    }
+
+    // score
+    score = new Score();
+    score->setPos(100,-50);
+    scene->addItem(score);
+
+    score2 = new Score();
+    score2->setPos(550,600);
+    scene->addItem(score2);
 
     //ciscenje zidova oko igraca na pocetku
     if(scene->itemAt(50, 0, QTransform()))

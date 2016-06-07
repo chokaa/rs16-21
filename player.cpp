@@ -9,6 +9,7 @@
 #include "powerups.h"
 #include "fire.h"
 #include "game.h"
+#include "score.h"
 
 extern Game * game;
 
@@ -30,7 +31,6 @@ void Player::move(int s){
         case 1:
             if (pos().x() > 0 && !scene()->itemAt(x()-50,y(), QTransform()))
                         setPos(x()-50,y());
-
                     else if((scene()->itemAt(x()-50,y(), QTransform())))
                         if(!((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(fixedWall)) &&
                            !((typeid(*(scene()->itemAt(x()-50,y(), QTransform())))) == typeid(Bomb)) &&
@@ -46,6 +46,8 @@ void Player::move(int s){
                                     }
                                     if(((powerups*)(scene()->itemAt(x()-50,y(), QTransform())))->redni_broj_powerupa==2){
                                     this->broj_bombi++;
+                                        game->score->increase();
+                                        game->score2->increase();
                                     }
                                     scene()->removeItem((scene()->itemAt(x()-50,y(), QTransform())));
                                     setPos(x()-50,y());
@@ -74,6 +76,8 @@ void Player::move(int s){
                                }
                                if(((powerups*)(scene()->itemAt(x()+50,y(), QTransform())))->redni_broj_powerupa==2){
                                this->broj_bombi++;
+                                   game->score->increase();
+                                   game->score2->increase();
                                }
                                scene()->removeItem((scene()->itemAt(x()+50,y(), QTransform())));
                                setPos(x()+50,y());
@@ -98,6 +102,8 @@ void Player::move(int s){
                                }
                                if(((powerups*)(scene()->itemAt(x(),y()-50, QTransform())))->redni_broj_powerupa==2){
                                this->broj_bombi++;
+                                   game->score->increase();
+                                   game->score2->increase();
                                }
                                scene()->removeItem((scene()->itemAt(x(),y()-50, QTransform())));
                                setPos(x(),y()-50);
@@ -122,12 +128,13 @@ void Player::move(int s){
                                     }
                                     if(((powerups*)(scene()->itemAt(x(),y()+50, QTransform())))->redni_broj_powerupa==2){
                                     this->broj_bombi++;
+                                        game->score->increase();
+                                        game->score2->increase();
                                     }
                                     scene()->removeItem((scene()->itemAt(x(),y()+50, QTransform())));
                                     setPos(x(),y()+50);
                             }
                     }
-
             break;
         case 5:
             QList<QGraphicsItem *> scene_items = scene()->items();
@@ -148,9 +155,6 @@ void Player::move(int s){
             }
         break;
     }
-
-
-
 }
 
 

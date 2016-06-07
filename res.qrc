@@ -9,5 +9,6 @@
         <file>bombpowerup.jpg</file>
         <file>bomb.jpg</file>
         <file>dead.jpg</file>
+        <file>gameover.jpg</file>
     </qresource>
 </RCC>

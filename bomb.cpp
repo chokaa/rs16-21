@@ -27,23 +27,24 @@ void Bomb::StopTimer(){
 
 void Bomb::explode(){
 
+    // igrac umire ako je na istom mestu gde i bomba
     setPixmap(QPixmap());
-    if(scene()->itemAt(x(),y(), QTransform())){
+    if((scene()->itemAt(x(),y(), QTransform())))
         if((typeid(*(scene()->itemAt(x(),y(), QTransform())))) == typeid(Player)){
-            Player *player= (Player*)(scene()->itemAt(x(),y(), QTransform()));
+         Player *player= (Player*)(scene()->itemAt(x(),y(), QTransform()));
             player->dead();
         }
-    }
     Fire * fire = new Fire();
     fire->setPos(x(),y());
     scene()->addItem(fire);
 
+    // crtanje eksplozije + kolizije
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()+i*50,y(), QTransform())){
-          Fire * fire = new Fire();
-          fire->setPos(x()+i*50,y());
-          scene()->addItem(fire);
-       }
+            Fire * fire = new Fire();
+            fire->setPos(x()+i*50,y());
+            scene()->addItem(fire);
+      }
       else if((typeid(*(scene()->itemAt(x()+i*50,y(), QTransform())))) == typeid(fixedWall)){
           break;
       }
@@ -87,9 +88,9 @@ void Bomb::explode(){
 
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x()-i*50,y(), QTransform())){
-          Fire * fire = new Fire();
-          fire->setPos(x()-i*50,y());
-          scene()->addItem(fire);
+            Fire * fire = new Fire();
+            fire->setPos(x()-i*50,y());
+            scene()->addItem(fire);
        }
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(fixedWall)){
         break;
@@ -129,14 +130,17 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x()-i*50,y(), QTransform())))) == typeid(Player)){
           Player *player= (Player*)(scene()->itemAt(x()-i*50,y(), QTransform()));
           player->dead();
+          Fire * fire = new Fire();
+          fire->setPos(x()-i*50,y());
+          scene()->addItem(fire);
       }
     }
 
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()+i*50, QTransform())){
-          Fire * fire = new Fire();
-          fire->setPos(x(),y()+i*50);
-          scene()->addItem(fire);
+            Fire * fire = new Fire();
+            fire->setPos(x(),y()+i*50);
+            scene()->addItem(fire);
        }
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(fixedWall)){
         break;
@@ -173,14 +177,17 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x(),y()+i*50, QTransform())))) == typeid(Player)){
           Player *player= (Player*)(scene()->itemAt(x(),y()+i*50, QTransform()));
           player->dead();
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()+i*50);
+          scene()->addItem(fire);
       }
     }
 
     for (int i=1; i<this->duzina_eksplozije; i++){
       if(!scene()->itemAt(x(),y()-i*50, QTransform())){
-          Fire * fire = new Fire();
-          fire->setPos(x(),y()-i*50);
-          scene()->addItem(fire);
+            Fire * fire = new Fire();
+            fire->setPos(x(),y()-i*50);
+            scene()->addItem(fire);
        }
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(fixedWall)){
         break;
@@ -218,14 +225,10 @@ void Bomb::explode(){
       else if((typeid(*(scene()->itemAt(x(),y()-i*50, QTransform())))) == typeid(Player)){
           Player *player= (Player*)(scene()->itemAt(x(),y()-i*50, QTransform()));
           player->dead();
+          Fire * fire = new Fire();
+          fire->setPos(x(),y()-i*50);
+          scene()->addItem(fire);
       }
     }
-
-
-
-
-
     scene()->removeItem(this);
-
-
 }
