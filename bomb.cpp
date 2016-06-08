@@ -9,6 +9,7 @@
 #include "fixedwall.h"
 #include "normalwall.h"
 #include <typeinfo>
+#include <QMediaPlayer>
 
 extern Game * game;
 
@@ -27,6 +28,10 @@ void Bomb::StopTimer(){
 }
 
 void Bomb::explode(){
+
+    QMediaPlayer *music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/boom.mp3"));
+    music->play();
 
     // igrac umire ako je na istom mestu gde i bomba
     setPixmap(QPixmap());

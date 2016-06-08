@@ -10,6 +10,8 @@
 #include "fire.h"
 #include "game.h"
 
+extern Game * game;
+
 Player::Player(int x,QGraphicsItem *parent): QGraphicsPixmapItem(parent){
     this->br=x;
     if(this->br==1)
@@ -21,6 +23,10 @@ Player::Player(int x,QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
 void Player::dead(){
     setPixmap(QPixmap(":/images/img/dead.png"));
+    if(this->br==1)
+        game->gameOver("Pobednik je Plavi igrac !");
+    else
+        game->gameOver("Pobednike je Crveni igrac !");
     this->clearFocus();
 }
 

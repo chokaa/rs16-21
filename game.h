@@ -19,6 +19,7 @@ public:
     fixedWall * wall;
     normalWall * nwall;
     Bomb *bomb;
+    void gameOver(QString kraj);
 };
 
 #endif // GAME_H

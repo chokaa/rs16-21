@@ -4,6 +4,9 @@
 #include <QImage>
 #include <QKeyEvent>
 #include <stdlib.h>
+#include <QApplication>
+#include <QPushButton>
+#include <QMediaPlayer>
 
 Game::Game(QWidget *parent){
     // create the scene
@@ -110,6 +113,10 @@ Game::Game(QWidget *parent){
         scene->removeItem((scene->itemAt(750,500, QTransform())));
     if(scene->itemAt(750, 450, QTransform()))
         scene->removeItem((scene->itemAt(750,450, QTransform())));
+
+    QMediaPlayer *music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/bgsound.mp3"));
+    music->play();
 }
 
 void Game::keyPressEvent(QKeyEvent *event){
@@ -137,4 +144,41 @@ void Game::keyPressEvent(QKeyEvent *event){
         else if (event->key() == Qt::Key_G)
             this->player2->move(5);
     }
+}
+void Game::gameOver(QString textToDisplay){
+
+    for (size_t i = 0, n = scene->items().size(); i < n; i++){
+        scene->items()[i]->setFlag(QGraphicsItem::ItemIsFocusable,false);
+    }
+    QFont* font = new QFont("Courier New");
+    font->setItalic(true);
+    font->setPixelSize(20);
+
+    QGraphicsRectItem* panel1 = new QGraphicsRectItem(-50,-50,900,700);
+    QBrush *brush= new QBrush();
+    brush->setStyle(Qt::SolidPattern);
+    brush->setColor(Qt::black);
+    panel1->setBrush(*brush);
+    panel1->setOpacity(0.85);
+    scene->addItem(panel1);
+
+    QGraphicsRectItem* panel2 = new QGraphicsRectItem(100,100,600,400);
+    QBrush *brush1 = new QBrush();
+    brush1->setStyle(Qt::SolidPattern);
+    brush1->setColor(Qt::lightGray);
+    panel2->setBrush(*brush1);
+    panel2->setOpacity(0.95);
+    scene->addItem(panel2);
+
+
+    QPushButton* kraj = new QPushButton(QString("Kraj"));
+    kraj->setGeometry(350,400,100,30);
+    scene->addWidget(kraj);
+    connect(kraj,SIGNAL(clicked(bool)),qApp,SLOT(quit()));
+
+    QGraphicsTextItem* overText = new QGraphicsTextItem(textToDisplay);
+    overText->setPos(250,200);
+    overText->setFont(*font);
+    scene->addItem(overText);
+
 }
