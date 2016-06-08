@@ -23,14 +23,17 @@ Player::Player(int x,QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
 void Player::dead(){
     setPixmap(QPixmap(":/images/img/dead.png"));
-    if(this->br==1)
+    if(this->br==2)
         game->gameOver("Pobednik je Plavi igrac !");
     else
-        game->gameOver("Pobednike je Crveni igrac !");
-    this->clearFocus();
+        game->gameOver("Pobednik je Crveni igrac !");
+    game->player1->br=0;
+    game->player2->br=0;
 }
 
 void Player::move(int s){
+
+    bool death=false;
 
     switch(s){
         case 1:
@@ -47,7 +50,7 @@ void Player::move(int s){
                             //ulazak u vatru
                             if((typeid(*(scene()->itemAt(x()-25,y()+25, QTransform())))) == typeid(Fire)){
                               setPos(x()-50,y());
-                              this->dead();
+                              death=true;
                             }
                             else if((typeid(*(scene()->itemAt(x()-25,y()+25, QTransform())))) == typeid(powerups)){
                                     if (((powerups*)(scene()->itemAt(x()-25,y()+25, QTransform())))->redni_broj_powerupa==1){
@@ -78,7 +81,7 @@ void Player::move(int s){
                            //ulazak u vatru
                            if((typeid(*(scene()->itemAt(x()+75,y()+25, QTransform())))) == typeid(Fire)){
                              setPos(x()+50,y());
-                             this->dead();
+                             death=true;
                            }
                            else if((typeid(*(scene()->itemAt(x()+75,y()+25, QTransform())))) == typeid(powerups)){
 
@@ -107,7 +110,7 @@ void Player::move(int s){
                            //ulazak u vatru
                            if((typeid(*(scene()->itemAt(x()+25,y()-25, QTransform())))) == typeid(Fire)){
                              setPos(x(),y()-50);
-                             this->dead();
+                             death=true;
                            }
                            else if((typeid(*(scene()->itemAt(x()+25,y()-25, QTransform())))) == typeid(powerups)){
                                if (((powerups*)(scene()->itemAt(x()+25,y()-25, QTransform())))->redni_broj_powerupa==1){
@@ -135,7 +138,7 @@ void Player::move(int s){
                                 //ulazak u vatru
                                 if((typeid(*(scene()->itemAt(x()+25,y()+75, QTransform())))) == typeid(Fire)){
                                   setPos(x(),y()+50);
-                                  this->dead();
+                                  death=true;
                                 }
                                 else if((typeid(*(scene()->itemAt(x()+25,y()+75, QTransform())))) == typeid(powerups)){
                                     if (((powerups*)(scene()->itemAt(x()+25,y()+75, QTransform())))->redni_broj_powerupa==1){
@@ -161,6 +164,9 @@ void Player::move(int s){
 
             break;
     }
+
+    if(death)
+        this->dead();
 }
 
 

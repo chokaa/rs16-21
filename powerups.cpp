@@ -9,7 +9,7 @@ powerups::powerups(QGraphicsItem *parent)
     int randomValue = qrand() % number;
 
     if(!(randomValue % 3==0)){
-    setPixmap(QPixmap(":/images/img/firepowerup.png"));
+    setPixmap(QPixmap(":/images/img/firepowerup.jpg"));
     this->redni_broj_powerupa=1;
     }
     else {

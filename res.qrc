@@ -14,8 +14,8 @@
         <file>img/p2_levo.png</file>
         <file>img/fire.jpg</file>
         <file>img/dead.png</file>
-        <file>img/firepowerup.png</file>
         <file>img/bombpowerup.png</file>
+        <file>img/firepowerup.jpg</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bgsound.mp3</file>

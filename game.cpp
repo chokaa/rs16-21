@@ -145,6 +145,7 @@ void Game::keyPressEvent(QKeyEvent *event){
             this->player2->move(5);
     }
 }
+
 void Game::gameOver(QString textToDisplay){
 
     for (size_t i = 0, n = scene->items().size(); i < n; i++){
@@ -169,7 +170,6 @@ void Game::gameOver(QString textToDisplay){
     panel2->setBrush(*brush1);
     panel2->setOpacity(0.95);
     scene->addItem(panel2);
-
 
     QPushButton* kraj = new QPushButton(QString("Kraj"));
     kraj->setGeometry(350,400,100,30);
